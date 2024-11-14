@@ -2,13 +2,11 @@
 
 This library provides for different implementations of 2D raycasting for 2D occupancy grids, including the Compressed Directional Distance Transform (CDDT) algorithm as proposed in [this publication](http://arxiv.org/abs/1705.01167). The code is written and optimized in C++, and Python wrappers are also provided.
 
-<!-- WARNING: this is currently in a slightly weird state in preparation for 6.141 lab 5. I will try to fix up all the compile flags to work with both use cases soon. -->
-
 ## Building the Code
 
-The following has been tested on Ubuntu 14.04, OSX 10.10, and Ubuntu 16.06. Hopefully it will work on other systems as well, or will at least be not too difficult to fix.
+The following has been tested on Ubuntu 22.04. Hopefully it will work on other systems as well, or will at least be not too difficult to fix.
 
-### C++ code
+<!-- ### C++ code
 
 ```
 # clone the repository
@@ -20,9 +18,9 @@ cmake ..
 make
 ```
 
-If you get an error about having the wrong version of CMake, install a version of CMake that is less than or equal to 3.6 (I use 3.6) from here: https://cmake.org/download/
+If you get an error about having the wrong version of CMake, install a version of CMake that is less than or equal to 3.6 (I use 3.6) from here: https://cmake.org/download/ -->
 
-If you don't want to update your system's version of CMake, simply:
+<!-- If you don't want to update your system's version of CMake, simply:
 
 ```
 # unzip cmake download and cd into that directory
@@ -32,33 +30,27 @@ cmake ..
 make
 # 3.6 should be your cmake version number
 sudo ln -s [path to cmake directory]/build/bin/cmake /usr/bin/cmake3.6
-```
+``` -->
 
-Then use cmake3.6 instead of cmake in the above instructions for building the range_lib code.
+<!-- Then use cmake3.6 instead of cmake in the above instructions for building the range_lib code. -->
 
 ### Python Wrappers
 
-To build the code and its associated Python wrappers for use in Python code, do the following. You may have to install Cython if you do not already have it on your system.
+To build the code and its associated Python wrappers for use in Python code, do the following. You may have to install Cython if you do not already have it on your system. (e.g. to use the MIT particle filter or SynPF of ETH Zurich)
 
-Another dependency for building the python wrapper is [transforms3d](https://matthew-brett.github.io/transforms3d/) which replace tf.transformations in ROS 1.
+Another dependency for building the python wrapper is [transforms3d](https://matthew-brett.github.io/transforms3d/) which replace `tf.transformations` in ROS 1.
 
 ```
-# clone the repository
-git clone https://github.com/kctess5/range_libc
+git clone https://github.com/kutschl/range_libc
 cd range_libc_dist/pywrapper
-# for an in place build, do this:
-python setup.py build_ext --inplace
-# for a system wide install, do this:
-python setup.py install
-# to compile with the GPU kernels, do this:
-WITH_CUDA=ON python setup.py install
-# this should take a few seconds to run
-python test.py
+sudo pip install Cython
+chmod +x ./compile.sh
+./compile.sh
 ```
 
 To see example usage of the Python wrappers (using the ROS specific helpers) see [https://github.com/mit-racecar/particle_filter](https://github.com/mit-racecar/particle_filter). See the [/docs](/docs) folder for documentation.
 
-### Building on a RACECAR
+<!-- ### Building on a RACECAR
 
 MIT's 6.141 uses this library for accelerating particle filters onboard the RACECAR platform. To install this on the Jetson TX1, do:
 
@@ -73,7 +65,7 @@ make
 sudo apt-get install Cython
 cd pywrapper
 sudo WITH_CUDA=ON python setup.py install
-```
+``` -->
 
 ## License
 
